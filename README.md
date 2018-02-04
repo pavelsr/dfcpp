@@ -1,4 +1,4 @@
-dfcpp - Dockerfile post-processing by cpanfile.
+# `dfcpp` - Dockerfile post-processing by cpanfile.
 
 Automatically creates separate docker layer for each Perl module, mentioned in cpanfile
 
@@ -19,7 +19,7 @@ like `/root/.cpanm/work/1517580036.144/build.log`,
 but you can't access this file in case of Docker container build
 since Docker doesn't save result of failed build.
 
-`dfcpp` auto-rewrites Dockerfile so that each module  
+`dfcpp` auto-rewrites Dockerfile so that each module
 is installing by separate command
 (like `RUN cpanm WWW::Telegram::BotAPI`),
 so in new layer (each Dockerfile command = separate layer),
@@ -39,7 +39,8 @@ Dockerfile:
 ```
 RUN apk update && \
 ...
-cpanm --installdeps .
+cpanm --installdeps . && \
+...
 ```
 
 cpanfile:
@@ -62,16 +63,19 @@ RUN cpanm WWW::Telegram::BotAPI
 
 # Installing
 
-## For local testing after git clone
-
-```
-sudo ln -s ${PWD}/dfcpp.pl /usr/bin/dfcpp
-chmod +x /usr/bin/dfcpp
-```
 
 ## From Github directly using wget, without git clone
 
 ```
+wget https://raw.githubusercontent.com/pavelsr/dfcpp/master/dfcpp.pl -O /usr/bin/dfcpp
+chmod +x /usr/bin/dfcpp
+```
+
+## For local testing and developing after git clone
+
+```
+sudo ln -s ${PWD}/dfcpp.pl /usr/bin/dfcpp
+chmod +x /usr/bin/dfcpp
 ```
 
 # TO DO
@@ -79,3 +83,4 @@ chmod +x /usr/bin/dfcpp
 * --help or man
 * undo changes
 * Python, Nodejs and other languages
+* Show latest stopped docker container
