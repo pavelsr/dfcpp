@@ -82,5 +82,5 @@ chmod +x /usr/bin/dfcpp
 
 * --help or man
 * undo changes
-* Python, Nodejs and other languages
+* Python (requirements.txt), Nodejs (package.json) and other languages
 * Show latest stopped docker container
